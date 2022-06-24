@@ -1,4 +1,4 @@
-# JAVASCRIPT DATAVISUALISATION CHANLLENGE  
+# JAVASCRIPT DATA VISUALISATION CHALLENGE  
 
 This project is a challange of the BeCode promo Swartz/6. I completed it on Juin 2022.
 
