@@ -74,7 +74,7 @@ function getData(dataT, dataTable){
 };
 
 /**
- * Transform number string in number float and delete undefined
+ * Transform number string in number decimal and delete undefined
  * @param {array of string} array 
  * @param {array of string and decimal} newArray 
  */
@@ -153,16 +153,20 @@ const myChart = new Chart(ctx, {
         datasets: dataset1,                 
     },
     options: {
+        pointHoverBorderWidth: 10,
         responsive: true,
         plugins: {
             legend: {
             position: 'top',
             },
-       },        
+       },   
+       layout: {
+        autopadding : true,
+       },  
        scales: {
             y: {
-                beginAtZero: true
-            }
+                beginAtZero: true,
+                },
         }
     }
 });
@@ -223,22 +227,26 @@ const dataCanva2 = {
         label: 'Table 2007/09',
         data: data2Column2,
         backgroundColor : backgroundColor,
-        hoverOffset: 4
+        hoverOffset: 30,
         },
         {
         label: 'Table 2010/12',
         data: data2Column1,
         backgroundColor : backgroundColor,
-        hoverOffset: 4
+        hoverOffset: 30,
         }   
     ]
 };
 
 const myChart2 = new Chart(ctx2, {
-    type: 'pie',
+    type: 'doughnut',
     data: dataCanva2,
     options :{
+        cutout: "30%",
         responsive: true,
+        layout: {
+        autopadding : true,
+        },  
             plugins: {
                 legend: {
                     position: 'top',
