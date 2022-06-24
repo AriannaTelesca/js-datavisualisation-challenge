@@ -273,7 +273,7 @@ var config = {
             legend: {
             display: false,
             },
-        },        
+        },  
         scales: {
             y: {
                 suggestedMin: -10,
