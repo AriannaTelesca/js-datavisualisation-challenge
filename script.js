@@ -39,8 +39,8 @@ function toNumber(array, newArray){
         else{
         newArray[i] = array[i];
         }
-    }
-}
+    };
+};
 
 var data1Number=[];
 toNumber(dataTable1, data1Number);
@@ -83,13 +83,12 @@ const myChart = new Chart(ctx, {
     },
     options: {
         responsive: true,
-    plugins: {
-      legend: {
-        position: 'top',
-      },
-      
-    },        
-        scales: {
+        plugins: {
+            legend: {
+            position: 'top',
+            },
+       },        
+       scales: {
             y: {
                 beginAtZero: true
             }
@@ -173,21 +172,21 @@ for(x=0; x<data2Array.length; x++){
 
 
 const dataCanva2 = {
-labels: labelPays2,
-datasets: [
-    {
-label: 'Table 2007/09',
-data: data2Column2,
-backgroundColor : backgroundColor,
-hoverOffset: 4
-},
-{
-label: 'Table 2010/12',
-data: data2Column1,
-backgroundColor : backgroundColor,
-hoverOffset: 4
-}
-]
+    labels: labelPays2,
+    datasets: [
+        {
+        label: 'Table 2007/09',
+        data: data2Column2,
+        backgroundColor : backgroundColor,
+        hoverOffset: 4
+        },
+        {
+        label: 'Table 2010/12',
+        data: data2Column1,
+        backgroundColor : backgroundColor,
+        hoverOffset: 4
+        }   
+    ]
 };
 
 const myChart2 = new Chart(ctx2, {
@@ -195,16 +194,16 @@ const myChart2 = new Chart(ctx2, {
     data: dataCanva2,
     options :{
         responsive: true,
-           plugins: {
-             legend: {
-               position: 'top',
-         },
-         title:{
-         display: true,
-         text: 'Homicide 2007-09/2010-12',
-         }
-        }
-       },
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title:{
+                    display: true,
+                    text: 'Homicide 2007-09/2010-12',
+                }
+            }
+    },
 });
 
 
@@ -224,7 +223,7 @@ canva3.setAttribute("aria-label", "graphique");
 var config = {
     type: 'line',
     data: {
-        labels: [0, 1, 2, 3, 4, 6, 7, 8, 9],
+        labels: [],
         datasets: [
             {
                 label: "Data",
@@ -234,19 +233,18 @@ var config = {
             }
         ]                 
     },
-     options: {
+    options: {
         responsive: true,
-    plugins: {
-      legend: {
-        position: 'top',
-      },
-      
-    },        
+        plugins: {
+            legend: {
+            position: 'top',
+            },
+        },        
         scales: {
             y: {
-                min: -20,
-                max: 40,
-            }
+                suggestedMin: -10,
+                suggestedMax: 30,
+                }
         }
     },
     
@@ -255,7 +253,8 @@ var config = {
  const myChart3= new Chart(ctx3, config);
 
 
-function addData(chart, data) {
+function addData(chart,label, data) {
+        chart.data.labels = label;
         chart.data.datasets.forEach((dataset) => {
             dataset.data = data;
         });
@@ -265,20 +264,23 @@ function addData(chart, data) {
 
 
 var inter = setInterval(fetchF, 1000);
-
+var label3 = [];
 
 function fetchF(){
 
     fetch("https://canvasjs.com/services/data/datapoints.php", {cache: "reload"})
     .then(response=> response.json())
     .then(datapoints => {
-        
-        addData(myChart3, datapoints);
+
+        for(x=0; x<datapoints.length; x++){
+            label3[x] = datapoints[x][0];
+        }
+       
+        addData(myChart3, label3, datapoints);
   
     });
 
 };
-
 
 
 
